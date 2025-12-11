@@ -1,6 +1,6 @@
 /*********************************************************************
  * @file  Apllication.h
- * @author Gallego Enzo & Elouan Gilles
+ * @author Gallego Enzo & Elouan Gilles 
  * @brief Fichier header de l'application
  *********************************************************************/
 #ifndef APPLICATION_H_
