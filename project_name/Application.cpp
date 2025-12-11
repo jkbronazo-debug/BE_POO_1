@@ -10,7 +10,7 @@ Application::Application()
 {
   // Code
   ; 
-}
+} // com
   
 Application::~Application()
 {
