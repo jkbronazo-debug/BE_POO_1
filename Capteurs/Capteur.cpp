@@ -42,4 +42,32 @@ public:
     virtual void print_value();
     virtual bool detect_event() = 0;
     
+};
+
+
+
+
+
+class US_capteur : public Figure {
+protected:
+    float mes_distance;
+    float seuil;
+    int trigpin;
+    int echopin;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detectEvent() override{
+        int result = false;
+        if (mes_distance < seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
 }
