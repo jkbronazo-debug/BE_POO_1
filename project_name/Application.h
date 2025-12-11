@@ -1,5 +1,5 @@
 /*********************************************************************
- * @file  Apllication.h
+ * @file  Aplication.h
  * @author Gallego Enzo & Elouan Gilles 
  * @brief Fichier header de l'application
  *********************************************************************/
