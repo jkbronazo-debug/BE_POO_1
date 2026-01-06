@@ -40,7 +40,7 @@ public:
 
     virtual void update();
     virtual void print_value();
-    virtual bool detect_event() = 0;
+    virtual bool detectEvent() = 0;
     
 };
 
@@ -60,7 +60,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detect_event() override{
+    bool detectEvent() override{
         int result = false;
         update();
         if (mes_distance < seuil){
