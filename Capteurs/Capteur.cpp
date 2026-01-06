@@ -2,14 +2,21 @@
 #include <list>
 #include <algorithm>
 #include <typeinfo>
+#include <Arduino.h>
 
 using namespace std;
 
 //----------------------------------
+void setup(){
 
+
+}
+
+
+void loop(){
 class Capteur {
 protected:
-    static int compteur_capteurs; 
+     int compteur_capteurs; 
     int ID_capteur;
     bool active;
 
@@ -18,7 +25,7 @@ public:
         compteur_capteurs++;
     }
 
-    static int getCompteur(){
+     int getCompteur(){
         return compteur_capteurs;
     }
 
@@ -40,7 +47,7 @@ public:
 
     virtual void update();
     virtual void print_value();
-    virtual bool detectEvent() = 0;
+    virtual bool detect_event() = 0;
     
 };
 
@@ -60,7 +67,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detectEvent() override{
+    bool detect_event() override{
         int result = false;
         update();
         if (mes_distance < seuil){
@@ -82,7 +89,7 @@ protected:
 public:
 
     bool detect_event() override{
-        //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
+        pressed = digitalRead(pin_button) ; //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
         return pressed; //renvoie 1 si le bouton est appuyé, 0 s'il n'est pas appuyé.
     }
 };
@@ -166,4 +173,14 @@ public:
         return result;
     }
 };
+
+    
+}
+
+
+    Button_capteur B1 ; 
+    B1.pin_button = 2;
+    Serial.print(pressed);
+
+}
 
