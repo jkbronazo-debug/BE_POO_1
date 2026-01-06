@@ -59,6 +59,8 @@ class US_capteur : public Capteur {
 protected:
     float mes_distance;
     float seuil;
+    float limite_inf = 0;  //0 car la distance mesurée ne peut pas être négative
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
     int trigpin; //check s'il faut bien seulement deux pins ou plus.
     int echopin;
 
@@ -76,9 +78,17 @@ public:
         else{
             result = false;
         }
+        if (mes_distance < limite_inf){
+            deactivate();
+        }else if (mes_distance > limite_sup){
+            deactivate();
+        }        
         return result;
     }
 };
+
+
+
 
 
 class Button_capteur : public Capteur {
@@ -92,12 +102,25 @@ public:
         pressed = digitalRead(pin_button) ; //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
         return pressed; //renvoie 1 si le bouton est appuyé, 0 s'il n'est pas appuyé.
     }
+
+    void setPin(int new_pin){
+        pin_button = new_pin;
+    }
+
+    int getPin(){
+        return pin_button;
+    }
 };
+
+
+
 
 
 class Lum_capteur : public Capteur {
 protected:
     float mes_lum;
+    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
     float seuil;
     int pin1; //check combien il faut de pins.
     int pin2;
@@ -114,9 +137,10 @@ public:
             result = true;
         }
         else{
-            result = false;
-        }
+             bool detect_event() override{
+        int result = false;        
         return result;
+        }
     }
 };
 
@@ -145,7 +169,7 @@ public:
         }
         return result;
     }
-};
+}
 
 
 
@@ -173,6 +197,7 @@ public:
         return result;
     }
 };
+<<<<<<< HEAD
 
     
 }
@@ -184,3 +209,5 @@ public:
 
 }
 
+=======
+>>>>>>> fde32331f61d4fc844632afc0175091fd4f6153e
