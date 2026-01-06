@@ -81,10 +81,89 @@ protected:
 
 public:
 
-    bool detectEvent() override{
+    bool detect_event() override{
         //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
         return pressed; //renvoie 1 si le bouton est appuyé, 0 s'il n'est pas appuyé.
     }
 };
 
+
+class Lum_capteur : public Capteur {
+protected:
+    float mes_lum;
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_lum": mes_lum <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_lum > seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+};
+
+
+
+class Son_capteur : public Capteur {
+protected:
+    float mes_son;
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_son": mes_son <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_son > seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+};
+
+
+
+class Angle_capteur : public Capteur {
+protected:
+    float mes_angle;
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_angle": mes_angle <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_angle > seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+};
 
