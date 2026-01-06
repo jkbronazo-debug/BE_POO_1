@@ -48,11 +48,11 @@ public:
 
 
 
-class US_capteur : public Figure {
+class US_capteur : public Capteur {
 protected:
     float mes_distance;
     float seuil;
-    int trigpin; //check s'il faut bien seulement  deux pins ou plus.
+    int trigpin; //check s'il faut bien seulement deux pins ou plus.
     int echopin;
 
 public:
@@ -60,7 +60,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detectEvent() override{
+    bool detect_event() override{
         int result = false;
         update();
         if (mes_distance < seuil){
@@ -74,6 +74,30 @@ public:
 }
 
 
-//qsdqsdqsds
+class Button_capteur : public Capteur {
+protected:
+    bool pressed;
+    int pin; //check s'il faut bien seulement un seul pin.
+    
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_distance < seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+}
+
+
 
 
