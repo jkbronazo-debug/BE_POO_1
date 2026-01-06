@@ -65,19 +65,40 @@ public:
     bool detectEvent() override{
         int result = false;
         update();
-        if (mes_distance < seuil){
-            result = true;
-        }
-        else{
-            result = false;
-        }
-        if (mes_distance < limite_inf){
+        try{
+            if (mes_distance < limite_inf){
+                throw(mes_distance);
+            }
+            if (mes_distance > limite_sup){
+                throw(mes_distance);
+            }
+            if (mes_distance < seuil){
+                result = true;
+            }
+        }catch(float mes_distance){
             deactivate();
-        }else if (mes_distance > limite_sup){
-            deactivate();
-        }        
+            cout << "Erreur : valeurs hors limites. Capteur " << getID() << " désactivé.\n\n";
+        }
         return result;
     }
+
+    void setTrigPin(int new_pin){
+        trigpin = new_pin;
+    }
+
+    int getTrigPin(){
+        return trigpin;
+    }
+
+    void setEchoPin(int new_pin){
+        echopin = new_pin;
+    }
+
+    int getEchoPin(){
+        return echopin;
+    }
+
+
 };
 
 
@@ -107,8 +128,102 @@ public:
 
 
 
+class Lum_capteur : public Capteur {
+protected:
+    float mes_lum;
+    float seuil;
+    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
+    int pin1; //check s'il faut bien seulement deux pins ou plus.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detectEvent() override{
+        int result = false;
+        update();
+        try{
+            if (mes_lum < limite_inf){
+                throw(mes_lum);
+            }
+            if (mes_lum > limite_sup){
+                throw(mes_lum);
+            }
+            if (mes_lum < seuil){
+                result = true;
+            }
+        }catch(float mes_lum){
+            deactivate();
+            cout << "Erreur : valeurs hors limites. Capteur " << getID() << " désactivé.\n\n";
+        }
+        return result;
+    }
+
+    void setPin1(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin1(){
+        return pin1;
+    }
+
+    void setPin2(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin2(){
+        return pin1;
+    }
 
 
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Lum_capteur : public Capteur {
 protected:
     float mes_lum;
@@ -190,3 +305,85 @@ public:
         return result;
     }
 };
+lass Lum_capteur : public Capteur {
+protected:
+    float mes_lum;
+    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_lum": mes_lum <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_lum > seuil){
+            result = true;
+        }
+        else{
+             bool detect_event() override{
+        int result = false;        
+        return result;
+        }
+    }
+};
+
+
+
+class Son_capteur : public Capteur {
+protected:
+    float mes_son;
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_son": mes_son <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_son > seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+}
+
+
+
+class Angle_capteur : public Capteur {
+protected:
+    float mes_angle;
+    float seuil;
+    int pin1; //check combien il faut de pins.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_angle": mes_angle <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        if (mes_angle > seuil){
+            result = true;
+        }
+        else{
+            result = false;
+        }
+        return result;
+    }
+};
+*/
