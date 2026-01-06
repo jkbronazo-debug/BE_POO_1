@@ -52,7 +52,7 @@ class US_capteur : public Figure {
 protected:
     float mes_distance;
     float seuil;
-    int trigpin;
+    int trigpin; //check s'il faut bien seulement  deux pins ou plus.
     int echopin;
 
 public:
@@ -62,6 +62,7 @@ public:
 
     bool detectEvent() override{
         int result = false;
+        update();
         if (mes_distance < seuil){
             result = true;
         }
@@ -71,3 +72,8 @@ public:
         return result;
     }
 }
+
+
+
+
+
