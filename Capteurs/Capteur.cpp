@@ -60,7 +60,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detect_event() override{
+    bool detectEvent() override{
         int result = false;
         update();
         if (mes_distance < seuil){
@@ -71,50 +71,10 @@ public:
         }
         return result;
     }
-}
+};
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Button_capteur : public Capteur {
-protected:
-    bool pressed;
-    int pin; //check s'il faut bien seulement un seul pin.
-    
-
-public:
-    void update() override {
-        //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
-    }
-
-    bool detect_event() override{
-        int result = false;
-        update();
-        if (mes_distance < seuil){
-            result = true;
-        }
-        else{
-            result = false;
-        }
-        return result;
-    }
-}
-
-
+//qsdqsdqsds
 
 
