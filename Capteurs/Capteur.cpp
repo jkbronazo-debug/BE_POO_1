@@ -74,6 +74,23 @@ public:
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Button_capteur : public Capteur {
 protected:
     bool pressed;
