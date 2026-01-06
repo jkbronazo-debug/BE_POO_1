@@ -2,14 +2,21 @@
 #include <list>
 #include <algorithm>
 #include <typeinfo>
+#include <Arduino.h>
 
 using namespace std;
 
 //----------------------------------
+void setup(){
 
+
+}
+
+
+void loop(){
 class Capteur {
 protected:
-    static int compteur_capteurs; 
+     int compteur_capteurs; 
     int ID_capteur;
     bool active;
 
@@ -18,7 +25,7 @@ public:
         compteur_capteurs++;
     }
 
-    static int getCompteur(){
+     int getCompteur(){
         return compteur_capteurs;
     }
 
@@ -40,7 +47,7 @@ public:
 
     virtual void update();
     virtual void print_value();
-    virtual bool detectEvent() = 0;
+    virtual bool detect_event() = 0;
     
 };
 
@@ -62,7 +69,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detectEvent() override{
+    bool detect_event() override{
         int result = false;
         update();
         try{
@@ -113,7 +120,7 @@ protected:
 public:
 
     bool detect_event() override{
-        //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
+        pressed = digitalRead(pin_button) ; //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
         return pressed; //renvoie 1 si le bouton est appuyé, 0 s'il n'est pas appuyé.
     }
 
@@ -305,85 +312,3 @@ public:
         return result;
     }
 };
-lass Lum_capteur : public Capteur {
-protected:
-    float mes_lum;
-    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
-    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
-    float seuil;
-    int pin1; //check combien il faut de pins.
-    int pin2;
-
-public:
-    void update() override {
-        //cette fonction change la valeur de "mes_lum": mes_lum <- la nouvelle valeur mesurée par le capteur.
-    }
-
-    bool detect_event() override{
-        int result = false;
-        update();
-        if (mes_lum > seuil){
-            result = true;
-        }
-        else{
-             bool detect_event() override{
-        int result = false;        
-        return result;
-        }
-    }
-};
-
-
-
-class Son_capteur : public Capteur {
-protected:
-    float mes_son;
-    float seuil;
-    int pin1; //check combien il faut de pins.
-    int pin2;
-
-public:
-    void update() override {
-        //cette fonction change la valeur de "mes_son": mes_son <- la nouvelle valeur mesurée par le capteur.
-    }
-
-    bool detect_event() override{
-        int result = false;
-        update();
-        if (mes_son > seuil){
-            result = true;
-        }
-        else{
-            result = false;
-        }
-        return result;
-    }
-}
-
-
-
-class Angle_capteur : public Capteur {
-protected:
-    float mes_angle;
-    float seuil;
-    int pin1; //check combien il faut de pins.
-    int pin2;
-
-public:
-    void update() override {
-        //cette fonction change la valeur de "mes_angle": mes_angle <- la nouvelle valeur mesurée par le capteur.
-    }
-
-    bool detect_event() override{
-        int result = false;
-        update();
-        if (mes_angle > seuil){
-            result = true;
-        }
-        else{
-            result = false;
-        }
-        return result;
-    }
-};
-*/
