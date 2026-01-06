@@ -60,7 +60,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detectEvent() override{
+    bool detect_event() override{
         int result = false;
         update();
         if (mes_distance < seuil){
