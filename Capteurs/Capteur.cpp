@@ -74,7 +74,17 @@ public:
 };
 
 
+class Button_capteur : public Capteur {
+protected:
+    bool pressed;
+    int pin_button; //check s'il faut bien un seul pin (pour le bouton, prends un pin digital je pense)
 
-//qsdqsdqsds
+public:
+
+    bool detectEvent() override{
+        //rajoute ici la lecture du pin_button et actualise la variable "pressed" (pressed <- lecture du pin-button)
+        return pressed; //renvoie 1 si le bouton est appuyé, 0 s'il n'est pas appuyé.
+    }
+};
 
 
