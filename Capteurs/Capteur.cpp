@@ -1,15 +1,15 @@
 // gauchard@laas.fr
 // contacte prof en cas de probleme
 
-#include <iostream>
+/*#include <iostream>
 #include <list>
 #include <algorithm>
-#include <typeinfo>
+#include <typeinfo>*/
 #include <Arduino.h>
 
 
 
-\\ "C:\Users\eloua\Documents\PlatformIO\Projects\Projet_4A-C\platformio.ini"
+// "C:\Users\eloua\Documents\PlatformIO\Projects\Projet_4A-C\platformio.ini"
 using namespace std;
 
 //----------------------------------
@@ -85,7 +85,9 @@ public:
             }
         }catch(float mes_distance){
             deactivate();
-            cout << "Erreur : valeurs hors limites. Capteur " << getID() << " désactivé.\n\n";
+            Serial.print("Erreur : valeurs hors limites. Capteur ");
+            Serial.print(getID());
+            Serial.print(" désactivé.\n\n");
         }
         return result;
     }
@@ -150,7 +152,7 @@ public:
         //cette fonction change la valeur de "mes_distance": mes_distance <- la nouvelle valeur mesurée par le capteur.
     }
 
-    bool detectEvent() override{
+    bool detect_event() override{
         int result = false;
         update();
         try{
@@ -165,7 +167,9 @@ public:
             }
         }catch(float mes_lum){
             deactivate();
-            cout << "Erreur : valeurs hors limites. Capteur " << getID() << " désactivé.\n\n";
+            Serial.print("Erreur : valeurs hors limites. Capteur ");
+            Serial.print(getID());
+            Serial.print(" désactivé.\n\n");
         }
         return result;
     }
@@ -188,48 +192,6 @@ public:
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 class Lum_capteur : public Capteur {
@@ -312,8 +274,8 @@ public:
         }
         return result;
     }
-<<<<<<< HEAD
-};
+
+};*/
     Button_capteur B1 ;
 
     void setup(){
@@ -323,20 +285,14 @@ public:
     }
     
 
-
-
-    /*Button_capteur B1 ; 
-    B1.setPin(2);
-    int pin_button_press = B1.getPin(); 
-    Serial.print(pressed);*/
-
+ 
+   
 void loop(){
-    bool pin_boutton_pess = B1.getPin();
-    Serial.println(pin_boutton_pess);
-
+    int pin_button_press = B1.getPin();
+    Serial.println(pin_button_press);
 
 }
 
-=======
-};
->>>>>>> e3667cf0957fd46993b095f631db6bb21a67c8c5
+
+
+
