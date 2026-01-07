@@ -1,19 +1,20 @@
+// gauchard@laas.fr
+// contacte prof en cas de probleme
+
 #include <iostream>
 #include <list>
 #include <algorithm>
 #include <typeinfo>
 #include <Arduino.h>
 
+
+
+\\ "C:\Users\eloua\Documents\PlatformIO\Projects\Projet_4A-C\platformio.ini"
 using namespace std;
 
 //----------------------------------
-void setup(){
 
 
-}
-
-
-void loop(){
 class Capteur {
 protected:
      int compteur_capteurs; 
@@ -137,11 +138,11 @@ public:
             result = true;
         }
         else{
-             bool detect_event() override{
         int result = false;        
         return result;
         }
     }
+
 };
 
 
@@ -169,7 +170,7 @@ public:
         }
         return result;
     }
-}
+};
 
 
 
@@ -197,17 +198,26 @@ public:
         return result;
     }
 };
-<<<<<<< HEAD
+    Button_capteur B1 ;
 
+    void setup(){
+       Serial.begin(9600);  
+        B1.setPin(2);
+       
+    }
     
+
+
+
+    /*Button_capteur B1 ; 
+    B1.setPin(2);
+    int pin_button_press = B1.getPin(); 
+    Serial.print(pressed);*/
+
+void loop(){
+    bool pin_boutton_pess = B1.getPin();
+    Serial.println(pin_boutton_pess);
+
+
 }
 
-
-    Button_capteur B1 ; 
-    B1.pin_button = 2;
-    Serial.print(pressed);
-
-}
-
-=======
->>>>>>> fde32331f61d4fc844632afc0175091fd4f6153e
