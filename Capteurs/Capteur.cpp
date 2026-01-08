@@ -80,12 +80,12 @@ public:
             if (mes_distance > limite_sup){
                 throw(mes_distance);
             }
-            if (mes_distance < seuil){
+            if (mes_distance < seuil){      //Condition de détection
                 result = true;
             }
         }catch(float mes_distance){
             deactivate();
-            Serial.print("Erreur : valeurs hors limites. Capteur ");
+            Serial.print("Erreur : valeurs hors limites. Capteur ultrason no. ");
             Serial.print(getID());
             Serial.print(" désactivé.\n\n");
         }
@@ -162,12 +162,12 @@ public:
             if (mes_lum > limite_sup){
                 throw(mes_lum);
             }
-            if (mes_lum < seuil){
+            if (mes_lum > seuil){     //Condition de détection
                 result = true;
             }
         }catch(float mes_lum){
             deactivate();
-            Serial.print("Erreur : valeurs hors limites. Capteur ");
+            Serial.print("Erreur : valeurs hors limites. Capteur de luminosite no. ");
             Serial.print(getID());
             Serial.print(" désactivé.\n\n");
         }
@@ -192,6 +192,141 @@ public:
 
 
 };
+
+
+
+
+
+class Son_capteur : public Capteur {
+protected:
+    float mes_son;
+    float seuil;
+    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
+    int pin1; //check s'il faut bien seulement deux pins ou plus.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_son": mes_son <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        try{
+            if (mes_son < limite_inf){
+                throw(mes_son);
+            }
+            if (mes_son > limite_sup){
+                throw(mes_son);
+            }
+            if (mes_son > seuil){    //Condition de détection
+                result = true;
+            }
+        }catch(float mes_son){
+            deactivate();
+            Serial.print("Erreur : valeurs hors limites. Capteur de son no. ");
+            Serial.print(getID());
+            Serial.print(" désactivé.\n\n");
+        }
+        return result;
+    }
+
+    void setPin1(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin1(){
+        return pin1;
+    }
+
+    void setPin2(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin2(){
+        return pin1;
+    }
+
+
+};
+
+
+
+
+class Ang_capteur : public Capteur {
+protected:
+    float mes_ang;
+    float seuil;
+    float limite_inf = 0;  //Je mets 0 au hasard, il faudra voir ce qui est cohérent
+    float limite_sup = 1000; //Je mets 1000 au hasard, il faudra voir ce qui est cohérent
+    int pin1; //check s'il faut bien seulement deux pins ou plus.
+    int pin2;
+
+public:
+    void update() override {
+        //cette fonction change la valeur de "mes_son": mes_son <- la nouvelle valeur mesurée par le capteur.
+    }
+
+    bool detect_event() override{
+        int result = false;
+        update();
+        try{
+            if (mes_ang < limite_inf){
+                throw(mes_ang);
+            }
+            if (mes_ang > limite_sup){
+                throw(mes_ang);
+            }
+            if (mes_ang > seuil){    //Condition de détection
+                result = true;
+            }
+        }catch(float mes_ang){
+            deactivate();
+            Serial.print("Erreur : valeurs hors limites. Capteur d'angle no.");
+            Serial.print(getID());
+            Serial.print(" désactivé.\n\n");
+        }
+        return result;
+    }
+
+    void setPin1(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin1(){
+        return pin1;
+    }
+
+    void setPin2(int new_pin){
+        pin1 = new_pin;
+    }
+
+    int getPin2(){
+        return pin1;
+    }
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 class Lum_capteur : public Capteur {
@@ -237,7 +372,9 @@ public:
     }
 
     bool detect_event() override{
-        int result = false;
+        int result = int pin1; //check s'il faut bien seulement deux pins ou plus.
+    int pin2;
+ false;
         update();
         if (mes_son > seuil){
             result = true;
